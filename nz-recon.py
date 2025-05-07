@@ -21,8 +21,6 @@ Powered by Nooh Zidan - NZ
 tools_commands = {
     "subfinder": "subfinder -d {domain} -all --recursive -o subfinder.txt",
     "bbot": "bbot -d {domain} -o bbot.txt",
-    "dnscan": "python3 dnscan.py -d {domain} -w ~/SecLists-master/Discovery/DNS/subdomains-top1million-110000.txt -t 70 -n -oA dnscan",
-    "amass": "amass enum -active -d {domain} -brute -o amass.txt",
     "chaos": "chaos -d {domain} -key CHAOS_API_KEY -o chaos.txt",
     "findomain": "findomain -t {domain} -o findomain",
     "crtsh": "crtsh -d {domain} -o crtsh.txt",
@@ -54,7 +52,7 @@ def merge_results():
 def main():
     print_logo()
     domain = input("Enter target domain: ").strip()
-    
+
     used_tools = []
     skipped_tools = []
 
