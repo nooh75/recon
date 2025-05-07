@@ -22,8 +22,6 @@ A powerful and modular **Bug Bounty Subdomain Enumeration** automation tool deve
 
 - [subfinder](https://github.com/projectdiscovery/subfinder)
 - [bbot](https://github.com/blacklanternsecurity/bbot)
-- [dnscan](https://github.com/rbsec/dnscan)
-- [amass](https://github.com/owasp-amass/amass)
 - [chaos](https://github.com/projectdiscovery/chaos-client)
 - [findomain](https://github.com/Findomain/Findomain)
 - [crtsh](https://github.com/nahamsec/crtsh)
@@ -40,7 +38,6 @@ Make sure you install the following tools before running the script:
 sudo apt install -y findomain
 go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
 go install github.com/projectdiscovery/chaos-client/cmd/chaos@latest
-go install github.com/owasp-amass/amass/v3/...@latest
 pip install -r requirements.txt
 ````
 
@@ -49,7 +46,7 @@ Manual installs (or use precompiled binaries):
 * bbot
 * github-subdomains
 * crtsh
-* dnscan
+
 
 ---
 
