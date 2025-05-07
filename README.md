@@ -1,8 +1,4 @@
-Here’s a `README.md` for your **Na7na7 Recon Tool** (branded as **NZ Recon Tool**) along with a `requirements.txt` section for dependencies:
-
----
-
-### 📄 `README.md`
+###  `README.md`
 
 ````markdown
 # NZ Recon Tool 
