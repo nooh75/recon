@@ -113,14 +113,3 @@ This project is licensed under the MIT License. Feel free to use and modify it a
 
 ---
 
-## 🙌 Credits
-
-Built with ❤️ by the cybersecurity community, leveraging:
-
-* [TomNomNom's assetfinder](https://github.com/tomnomnom/assetfinder)
-* [ProjectDiscovery's subfinder](https://github.com/projectdiscovery/subfinder)
-* [OWASP Gobuster](https://github.com/OJ/gobuster)
-
----
-
-Would you like me to generate the actual `README.md` file or help you turn this into a GitHub repo?
