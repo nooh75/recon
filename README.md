@@ -1,6 +1,4 @@
-Here's a complete and professional `README.md` file for your **Bash-based Recon Script**. This will help others (and your future self) understand what the script does, how to install dependencies, and how to use it.
 
----
 
 # 🔍 Recon Script
 
