@@ -1,115 +1,84 @@
 
 
-# 🔍 Recon Script
+## 📘 README.md
 
-A powerful Bash script for domain reconnaissance and information gathering. This tool combines multiple popular utilities and online sources to gather data such as WHOIS information, subdomains, DNS records, certificate transparency logs, and more.
+````markdown
+# 🕵️‍♂️ Subdomain Enumeration Script
 
----
-
-## 📌 Features
-
-* ✅ WHOIS lookup with important fields extraction
-* ✅ Reverse WHOIS lookup using registrant email
-* ✅ DNS lookups using `dig` and `nslookup`
-* ✅ Reverse IP lookup using [viewdns.info](https://viewdns.info)
-* ✅ Certificate Transparency log search via `crt.sh`
-* ✅ Subdomain enumeration using:
-
-  * `assetfinder`
-  * `subfinder`
-  * `gobuster`
-* ✅ Merges and deduplicates subdomains
-* ✅ Resolves subdomains to IP addresses
-* ✅ Color-coded terminal output
+This script collects subdomains using multiple tools and organizes the results efficiently.
 
 ---
 
-## 🛠️ Dependencies
+## ✅ Features
 
-Ensure the following tools are installed on your system:
+- 🔍 Subdomain discovery using:
+  - `subfinder`
+  - `assetfinder`
+  - `crt.sh` (via `curl` + `jq`)
+- 🧾 Results saved and merged into `allsubdomains.txt`
+- 🗃️ Runs `bbot` separately and saves its raw JSON output in `bbot_output.json`
 
-* `whois`
-* `dig`
-* `nslookup`
-* `curl`
-* `jq`
-* `assetfinder`
-* `subfinder`
-* `gobuster`
+---
 
-You can install most of them via:
+## ⚙️ Requirements
+
+Ensure the following tools are installed and accessible in your `$PATH`:
+
+- `subfinder`
+- `assetfinder`
+- `bbot`
+- `curl`
+- `jq`
+
+Installation commands:
 
 ```bash
-# Debian/Ubuntu
-sudo apt update
-sudo apt install whois dnsutils curl jq gobuster -y
+# subfinder
+go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
 
-# Install assetfinder
+# assetfinder
 go install github.com/tomnomnom/assetfinder@latest
 
-# Install subfinder
-go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
-```
+# bbot
+pip install bbot
 
-> Ensure your `$GOPATH/bin` is in your `PATH` to use `assetfinder` and `subfinder`.
-
----
-
-## 📦 Output Structure
-
-All results are saved in the `recon_output` directory, organized as:
-
-```
-recon_output/
-│
-├── whois/
-│   ├── whois_example.com.txt
-│   ├── whois_example.com_important.txt
-│   └── reverse_whois_example.com.html
-│
-├── dns/
-│   ├── nslookup_example.com.txt
-│   ├── reverse_ip_example.com.html
-│   └── cert_sh_example.com.json
-│
-└── subdomains/
-    ├── assetfinder_example.com.txt
-    ├── subfinder_example.com.txt
-    ├── gobuster_example.com.txt
-    ├── all_subs_example.com.txt
-    ├── resolved_example.com.txt
-    └── crtsh_example.com.txt
-```
+# jq
+sudo apt install jq -y
+````
 
 ---
 
 ## 🚀 Usage
 
 ```bash
-./recon.sh <domain>
+chmod +x collect_subs.sh
+./collect_subs.sh example.com
 ```
-
-### Example:
-
-```bash
-./recon.sh example.com
-```
-
-This will run all recon modules and save the results in the structured `recon_output/` directory.
 
 ---
 
-## ⚠️ Notes
+## 📂 Output
 
-* This script queries external services (like `crt.sh`, `viewdns.info`) — ensure you're allowed to do so in your environment.
-* Make sure `gobuster` has access to the wordlist used:
-  `/usr/share/seclists/Discovery/DNS/subdomains-top1million-110000.txt`
+```text
+subs_example.com/
+├── assetfinder.txt
+├── bbot_output.json   👈 bbot result (not merged)
+├── crtsh.txt
+├── subfinder.txt
+└── allsubdomains.txt  ✅ merged, deduplicated list
+```
 
 ---
 
-## 📃 License
+## 📝 Notes
 
-This project is licensed under the MIT License. Feel free to use and modify it as needed.
+* `bbot_output.json` contains full structured output and is not merged with the others.
+* The file `allsubdomains.txt` is merged from:
+
+  * subfinder
+  * assetfinder
+  * crt.sh (removes wildcards)
+* Duplicates are removed using `sort -u`.
 
 ---
 
