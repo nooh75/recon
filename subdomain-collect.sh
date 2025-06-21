@@ -21,8 +21,8 @@ subfinder -d "$domain" -silent -all -o "$output_dir/subfinder.txt"
 echo -e "${GREEN}[+] Running assetfinder...${NC}"
 assetfinder --subs-only "$domain" > "$output_dir/assetfinder.txt"
 
-echo -e "${GREEN}[+] Running bbot (JSON only)...${NC}"
-bbot -t "$domain" -f json -o "$output_dir/bbot_output.json"
+#echo -e "${GREEN}[+] Running bbot (JSON only)...${NC}"
+#bbot -t "$domain" -f json -o "$output_dir/bbot_output.json"
 
 echo -e "${GREEN}[+] Getting subdomains from crt.sh...${NC}"
 curl -s "https://crt.sh/?q=%25.$domain&output=json" | jq -r '.[].name_value' | sed 's/\*\.//g' | sort -u > "$output_dir/crtsh.txt"
